@@ -1,6 +1,6 @@
 # non running specific functions relating to the api
 
-import calls as calls
+import RunningAPI.calls as calls
 import json
 
 def get_numner_of_activities():

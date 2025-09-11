@@ -3,9 +3,9 @@ import math
 from datetime import datetime
 import csv
 
-import calls as calls
-from generic import *
-from formats import *
+import RunningAPI.calls as calls
+from RunningAPI.generic import *
+from RunningAPI.formats import *
 
 def get_total_distance():
     Data = calls.get_stats()

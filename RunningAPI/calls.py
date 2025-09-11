@@ -2,10 +2,10 @@
 
 import requests
 import json
-from generic import *
+from RunningAPI.generic import *
 
 def get_stats():
-    renew_access()
+    renew_access() 
     params = get_api_parameters()
     ID = params[0]
     AccessToken = params[4]

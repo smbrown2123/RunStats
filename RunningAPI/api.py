@@ -1,16 +1,16 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from dblogic import *
-from running import *
+from RunningAPI.dblogic import *
+from RunningAPI.running import *
 
-app = FastAPI()
+RunningAPI = FastAPI()
 
 origins = [
     "http://localhost:3000"
 ]
 
-app.add_middleware(
+RunningAPI.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
@@ -18,19 +18,19 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-@app.get("/runs")
+@RunningAPI.get("/runs")
 def all_runs():
     response = get_all_runs_from_db()
     
     return response
 
-@app.get("/run/{run_id}")
+@RunningAPI.get("/run/{run_id}")
 def get_run_by_id(run_id):
     response = get_run_from_db_by_id(run_id)
     
     return response
 
-@app.get("/runs/refresh")
+@RunningAPI.get("/runs/refresh")
 def refresh_data_from_strava():
     runsDb = count_runs_in_db()
     runs = get_new_runs(runsDb)
@@ -38,7 +38,7 @@ def refresh_data_from_strava():
     
     return f"Db data refreshed with {len(runs)} new runs."
 
-@app.get("/runs/hard-refresh")
+@RunningAPI.get("/runs/hard-refresh")
 def refresh_all_runs_from_strava():
     clear_runs()
     runs = get_runs()
