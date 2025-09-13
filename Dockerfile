@@ -1,4 +1,5 @@
-FROM python:3.9
+# Build api image
+FROM python:3.9 AS api
 
 WORKDIR /code
 
@@ -13,3 +14,8 @@ COPY ./RunningAPI /code/RunningAPI
 
 # Use Uvicorn to run the FastAPI app
 CMD ["uvicorn", "RunningAPI.api:RunningAPI", "--host", "0.0.0.0", "--port", "80"]
+
+# Build db image
+FROM postgres:latest as db
+
+COPY init/ /docker-entrypoint-initdb.d/
