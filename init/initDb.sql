@@ -4,5 +4,4 @@ CREATE TABLE IF NOT EXISTS run (
     duration REAL,
     date DATE,
     id SERIAL PRIMARY KEY
-
 )
